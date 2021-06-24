@@ -7,3 +7,7 @@
 LICENSE:
   year: 2021
   holder: VSHN
+
+.gitignore:
+  # Add additional lines to the `.gitignore` file
+  additionalEntries: []
