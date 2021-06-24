@@ -1,3 +1,8 @@
+.github/ISSUE_TEMPLATE/config.yml:
+  contact_links:
+    - name: ❓ Help and Support RocketChat Channel
+      url: https://community.appuio.ch
+      about: Please ask and answer questions here. 🏥
 
 LICENSE:
   year: 2021
