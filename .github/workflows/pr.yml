@@ -4,7 +4,7 @@ on:
   pull_request: {}
 
 jobs:
-  update:
+  diff:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,5 +28,3 @@ jobs:
         run: |
           sha="$(git rev-parse --short HEAD)"
           bundle exec msync update --noop
-      - name: Show Diff
-        run: module:diff
