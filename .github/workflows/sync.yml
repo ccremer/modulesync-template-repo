@@ -19,6 +19,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0'
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Install modulesync
         run: bundle install
       - name: Run modulesync
