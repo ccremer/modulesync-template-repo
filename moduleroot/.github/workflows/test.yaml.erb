@@ -15,8 +15,8 @@ jobs:
           - docs-vale
     steps:
       - uses: actions/checkout@v2
-      - name: Run {% raw %}${{ matrix.command }}{% endraw %}
-        run: make {% raw %}${{ matrix.command }}{% endraw %}
+      - name: Run ${{ matrix.command }}
+        run: make ${{ matrix.command }}
   editorconfig:
     runs-on: ubuntu-latest
     steps:
