@@ -1,0 +1,5 @@
+---
+git_base: 'git@github.com:'
+namespace: ccremer
+branch: modulesync
+message: "Update from ccrener/modulesync-template-repo"
