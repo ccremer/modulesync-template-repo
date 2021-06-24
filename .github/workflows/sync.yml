@@ -28,4 +28,6 @@ jobs:
       - name: Run modulesync
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-        run: bundle exec msync update --pr --pr-labels dependency --pr-title "modulesync update" --pr-target-branch "main" --remote-branch "modulesync-$(git rev-parse --short HEAD)"
+        run: |
+          sha="$(git rev-parse --short HEAD)"
+          bundle exec msync update --pr --pr-title "[ModuleSync] Update template files from ${{ github.repository }}@${sha}" --remote-branch "modulesync-${sha}"
