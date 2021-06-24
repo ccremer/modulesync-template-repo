@@ -30,4 +30,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           sha="$(git rev-parse --short HEAD)"
-          bundle exec msync update --pr --pr-title "[ModuleSync] Update template files from ${{ github.repository }}@${sha}" --remote-branch "modulesync-${sha}"
+          bundle exec msync update --pr --pr-title "[ModuleSync] Update from ${{ github.repository }}@${sha}" --remote-branch "modulesync-${sha}"

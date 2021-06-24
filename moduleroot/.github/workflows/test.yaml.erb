@@ -24,3 +24,30 @@ jobs:
       - uses: snow-actions/eclint@v1.0.1
         with:
           args: 'check'
+
+<% if @configs['component-compile'] -%>
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.COMPONENT_NAME }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: ${{ env.COMPONENT_NAME }}
+  <%- if @configs['unit-tests'] -%>
+      - name: Determine Go version from go.mod
+        run: echo "GO_VERSION=$(grep "go 1." tests/go.mod | cut -d " " -f 2)" >> $GITHUB_ENV
+      - uses: actions/setup-go@v2
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+  <%- end -%>
+      - name: Compile component
+        run: make test
+<% end -%>
