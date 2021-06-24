@@ -15,3 +15,9 @@ LICENSE:
 .gitignore:
   # Add additional lines to the `.gitignore` file
   additionalEntries: []
+
+Doxyfile:
+  delete: true
+
+my-erb-template:
+  delete: true
