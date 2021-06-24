@@ -1,0 +1,36 @@
+name: Sync
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    name: Run msync --noop against all modules
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Install Ruby 3.0
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+      - name: Install modulesync
+        run: |
+          git clone --depth=1 https://github.com/voxpupuli/modulesync.git
+          cd modulesync
+          bundle install
+      # - name: Run update
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.PAT }}
+      #   run: docker run --rm -it -u $(id -u) -e GITHUB_TOKEN
+      #    --env SSH_AUTH_SOCK=/tmp/ssh_agent.sock --volume "${SSH_AUTH_SOCK}:/tmp/ssh_agent.sock"
+      #    --volume "${HOME}/.ssh/known_hosts:/home/msync/.ssh/known_hosts:ro"
+      #    --volume "${HOME}/.gitconfig:/home/msync/.gitconfig:ro"
+      #    -v ${PWD}:/app vshn/modulesync
+      #    msync update --pr --pr-labels dependency --pr-title "modulesync update" --pr-target-branch "main" --remote-branch "modulesync"
