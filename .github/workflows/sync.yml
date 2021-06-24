@@ -20,16 +20,11 @@ jobs:
         with:
           ruby-version: '3.0'
       - name: Install modulesync
-        run: |
-          git clone --depth=1 https://github.com/voxpupuli/modulesync.git
-          cd modulesync
-          bundle install
+        run: bundle install
       - name: Run modulesync
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-        run: |
-          cd modulesync
-          bundle exec msync update --pr --pr-labels dependency --pr-title "modulesync update" --pr-target-branch "main" --remote-branch "modulesync/$(git rev-parse --short HEAD)"
+        run: bundle exec msync update --pr --pr-labels dependency --pr-title "modulesync update" --pr-target-branch "main" --remote-branch "modulesync/$(git rev-parse --short HEAD)"
 
       # - name: Run update
       #   env:
